@@ -35,6 +35,8 @@ int main(int argc, char *argv[]) {
   first_table = cylon::io::ReadParquet(ctx, argv[1]).ValueOrDie();
   std::cout << first_table->schema()->ToString() << std::endl;
 
+  std::cout << "\n\n\n\n\n\n\n";
+
   std::cout << "Reading table 2\n";
   second_table = cylon::io::ReadParquet(ctx, argv[2]).ValueOrDie();
   std::cout << second_table->schema()->ToString() << std::endl;
@@ -52,7 +54,7 @@ int main(int argc, char *argv[]) {
                                                      "l_",
                                                      "r_");
 
-  std::cout << first_table->GetColumnByName(argv[3])->ToString() << std::endl;
+  std::cout << second_table->GetColumnByName(argv[3])->ToString() << std::endl;
 
   auto status = cylon::join::JoinTables(first_table, second_table, join_config, &joined);
 
